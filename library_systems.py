@@ -27,52 +27,29 @@ def check_limit(borrowed):
 print(check_limit(book)) #calling the function given
 
 
-# Task 2
-# def process_borrowers (file_path):
-#  with open(file_path,"r") as f:
-#     for line in f:
-#         line=line.strip()
-#         Name,book =line.split(",")
-#         try:
-#             book=int(book)
-#             status=check_limit(book)
-#             print(Name,"-",status)
-#         except ValueError:
-#             print("Error: Non-numeric value for", Name)
+def process_borrowers(filename):
+    """
+    This function displays the status of the borrowers 
+    >>>process_borrowers(filename)
 
-# def check_limit(borrowed):
-#     limit = 3
-#     fine_per_book = 5
-#     if borrowed <= limit:
-#         return "Within limit"
-#     else:
-#         fine = (borrowed - limit) * fine_per_book
-#         return f"Over limit: Fine ${fine}"
-# def process_borrowers(file_path):
-#     with open(file_path, "r") as f:
-#         csv_reader = csv.reader(f)
-#         next(csv_reader)  
 
-#         for line in csv_reader:
-           
-#             if len(line) < 2:
-#                 print(f"Error: Missing data for {line[0] if line else 'Unknown'}")
-#                 continue
+    """
+    try:
+        with open(filename,"r") as f:
+            reader=csv.reader(f)
+            head=next(reader)
+            for i in reader:
+                try:
+                    int(i[1])
+                    status=check_limit(int(i[1]))
+                    print(f"{i[0]} : {status}")
+                except ValueError:
+                    print(f"Error: Non-numeric value for {i[0]}")
 
-#             name = line[0]
-#             books = line[1]
+    except FileNotFoundError:
+        print("file not found")
 
-#             try:
-#                 books = int(books)
-#                 if books < 0:
-#                     print(f"Error: Invalid number of books for {name}")
-#                     continue
-            
-#                 status = check_limit(books)
-#                 print(f"{name}: {status}")
-#             except ValueError:
-#                 print(f"Error: Non-numeric value for {name}")
-#mohammed
+
 
 
 # Task 3 
@@ -137,16 +114,34 @@ def count_over_limit(file_path):
 #Task 5
 
 
+def main():
+    while True:
+        filename=input("Enter the filename: ")
+        try:
+            with open(filename, 'r') as file:
+                
+                break
+        except FileNotFoundError:
+            print("File not found. Please try again.")
+        
+        except Exception:
+            print(f"An error occurred:Try again.")
+    process_borrowers(filename)
+    count_over_limit(filename)
+    calculate_average_books(filename)
+    
 
 
 
 
 
 
-print(check_limit(book))
-#check_limit(file_path)
-calculate_average_books(file_path)
-count_over_limit(file_path)
+if __name__== "__main__":
+    main()
+# print(check_limit(book))
+# #check_limit(file_path)
+# calculate_average_books(file_path)
+# count_over_limit(file_path)
 
 
 
