@@ -7,7 +7,7 @@ Group Members:
 Manifesto:
 - Mohammed: Implemnted Task 1 check_limit()
 - Leen: Implemented Task 3 calculate_average_books() and Task 4 count_over_limit().
-- Trisha: Implemented Task 2 process_borrowed().
+- Trisha: Implemented Task 2 process_borrowers().
 
 """
 import csv
@@ -27,22 +27,25 @@ def check_limit(borrowed):
 print(check_limit(book)) #calling the function given
 
 
+#Task 2
 def process_borrowers(filename):
     """
     This function displays the status of the borrowers 
     >>>process_borrowers(filename)
 
+    
+
 
     """
     try:
         with open(filename,"r") as f:
-            reader=csv.reader(f)
-            head=next(reader)
-            for i in reader:
+            reader=csv.reader(f) 
+            next(reader) # omits the header for processing
+            for i in reader: # iterating over lines in the file
                 try:
-                    int(i[1])
-                    status=check_limit(int(i[1]))
-                    print(f"{i[0]} : {status}")
+                    n=int(i[1]) # checkes for potential ValueError and the parameter for check_limit function
+                    status=check_limit(n)
+                    print(f"{i[0]} : {status}") #displays the status
                 except ValueError:
                     print(f"Error: Non-numeric value for {i[0]}")
 
@@ -54,6 +57,8 @@ def process_borrowers(filename):
 
 # Task 3 
 def calculate_average_books(file_path):
+    """
+    """
     with open(file_path, "r") as f:
         csv_reader = csv.reader(f)
         next(csv_reader)
@@ -66,7 +71,7 @@ def calculate_average_books(file_path):
             if len(line) < 2:
                 continue
 
-            #name = line[0] #not lighting up check why?
+            
             books = line[1]
 
             try:
@@ -86,6 +91,8 @@ def calculate_average_books(file_path):
 
 # Task 4 
 def count_over_limit(file_path):
+    """
+    """
     limit = 3 
     over_limit_count = 0
 
@@ -97,7 +104,7 @@ def count_over_limit(file_path):
             if len(line) < 2: 
                 continue
 
-            #name = line[0] not lighting up check why?
+            
             books = line[1]
 
             try:
