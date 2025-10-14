@@ -74,68 +74,96 @@ def process_borrowers(filename):
 
 
 # Task 3 
-def calculate_average_books(file_path):
-    """
-    """
-    with open(file_path, "r") as f:
-        csv_reader = csv.reader(f)
-        next(csv_reader)
+"""
+Function name: calculate_average_books
+    This function calculates and displays the average number of books borrowed by students.
+    What does the code do: Reads a CSV file and calculates the average number of books borrowed by students.
 
-        total_books = 0      
-        valid_entries = 0   
+    Input: file_path, the path to a CSV file containing student names and the number of books borrowed.
 
-        for line in csv_reader:
-            
-            if len(line) < 2:
+    Output: Prints the average number of books borrowed or a message if no valid entries are found.
+    
+    Parameters:
+        file_path: The path to the CSV file containing student names and number of borrowed books.
+    
+    Example CSV content:
+        Name,Books
+        Ali,3
+        Sara,5
+        John,2
+        Mary,abc
+        David,6
+    
+    Example Output:
+        Average number of books borrowed: 4.00
+    """
+def calculate_average_books(file_path): 
+    with open(file_path, "r") as f:  
+        csv_reader = csv.reader(f)    
+        next(csv_reader)              # Skips the header row
+
+        total_books = 0                 # Stores the total number of books borrowed
+        valid_entries = 0               # Counts how many valid student entries are processed
+
+        for line in csv_reader:         #Loops through each row in the CSV file
+            if len(line) < 2:           # Skips rows with missing data
                 continue
 
-            
-            books = line[1]
+            books = line[1]            
 
             try:
-                books = int(books)
-                if books < 0:
-                    continue
-                total_books = total_books + books
-                valid_entries = valid_entries + 1
-            except ValueError:
+                books = int(books)      # Converts the book count to an integer
+                if books < 0:           # Skips negative numbers that include invalid data
+                    continue            
+
+                total_books = total_books + books 
+                valid_entries = valid_entries + 1 
+            except ValueError:                      # Handles string values in the second column 
               continue
-        if valid_entries > 0:
-            average = total_books / valid_entries
-            print(f"Average number of books borrowed: {average:.2f}")
+            
+        if valid_entries > 0:                       # Checks if there were any valid entries
+            average = total_books / valid_entries   # Calculates the average number of books
+            print(f"Average number of books borrowed: {average:.2f}") 
         else:
-            print("No valid entries found.")
+            print("No valid entries found.")         # Prints a message if no valid data exists
 
 
 # Task 4 
+"""
+ what does the code do : Counts and prints how many students borrowed more than the allowed limit of books.
+
+    The function reads a CSV file specified by 'file_path'. It skips the header row
+    and checks each students number of borrowed books against a fixed limit (3 books).
+    Only valid entries are counted.
+    Output:
+        Prints the number of students who borrowed more than the allowed limit.
+        for example:
+            Number of students over the limit: 4
+"""
 def count_over_limit(file_path):
-    """
-    """
-    limit = 3 
-    over_limit_count = 0
+    limit = 3                           # Sets the borrowing limit to 3 books
+    over_limit_count = 0                # Counter for students who exceed the limit
 
-    with open(file_path, "r") as f:
-        csv_reader = csv.reader(f)
-        next(csv_reader)
+    with open(file_path, "r") as f:     
+        csv_reader = csv.reader(f)       
+        next(csv_reader)                   # Skips the header row
 
-        for line in csv_reader:
-            if len(line) < 2: 
+        for line in csv_reader:         # Loops through each row in the CSV file
+            if len(line) < 2:            # Skips rows with missing columns
                 continue
 
-            
-            books = line[1]
+            books = line[1]              # Reads the number of borrowed books
 
             try:
-                books = int(books)
-                if books < 0:
+                books = int(books)      # Converts the value to an integer
+                if books < 0:           # skips negative values
                     continue
-                if books > limit:
+                if books > limit:       # Checks if the student borrowed more than the limit
                     over_limit_count = over_limit_count + 1
-            except ValueError:
+            except ValueError:                              # Skips rows where the book value isn't a number
                 continue
               
-    print(f"Number of students over the limit: {over_limit_count}")
-
+    print(f"Number of students over the limit: {over_limit_count}")   
 #Task 5
 def main():
     """
