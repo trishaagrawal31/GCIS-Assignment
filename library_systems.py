@@ -14,7 +14,6 @@ import csv
 
 
 # Task 1 
-
 def check_limit(borrowed):
     """
     Check the borrowing limit and returns the status message
@@ -32,8 +31,6 @@ def check_limit(borrowed):
     else: #the input shows error or invalid
         return "Error: Invalid number of books"
     
-
-
 
 
 #Task 2
@@ -58,8 +55,12 @@ def process_borrowers(filename):
             for i in reader: # iterating over lines in the file
                 try:
                     n=int(i[1]) # checkes for potential ValueError and acts as the parameter for check_limit function
-                    status=check_limit(n)
-                    print(f"{i[0]}: {status}") #displays the status
+                    if n < 0:
+                        print(f"Error: Invalid number of books for {i[0]}")
+                        continue
+                    else:
+                        status=check_limit(n)
+                        print(f"{i[0]}: {status}") #displays the status
                 except ValueError:
                     print(f"Error: Non-numeric value for {i[0]}") # specifies the non-numeric value which caused the error
 
@@ -112,7 +113,6 @@ def calculate_average_books(filename):
 
 
 # Task 4 
-
 def count_over_limit(filename):
     """
     Counts and prints how many students borrowed more than the allowed limit of books.
@@ -145,6 +145,7 @@ def count_over_limit(filename):
                 continue
               
     print(f"Number of students over the limit: {over_limit_count}")   
+    
 #Task 5
 def main():
     """
@@ -181,11 +182,6 @@ def main():
     calculate_average_books(filename)
     count_over_limit(filename)
     
-
-
-
-
-
 
 if __name__== "__main__":
     main()
