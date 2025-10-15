@@ -14,7 +14,7 @@ import csv
 
 
 # Task 1 
-book=int(input("Enter the number of borrowed books:")) #asking user how many books are entered
+
 def check_limit(borrowed):
     """
     Check the borrowing limit and returns the status message
