@@ -43,7 +43,7 @@ def process_borrowers(filename):
 
     Ali: Within limit
     Sara: Over limit: Fine $5
-    John: Within limit
+    Error: Invalid number of books for John
     Error: Non-numeric value for Mary
     David: Over limit: Fine $10
 
@@ -158,7 +158,7 @@ def main():
     Enter the filename: borrowers.csv
     Ali: Within limit
     Sara: Over limit: Fine $5
-    John: Within limit
+    Error: Invalid number of books for John
     Error: Non-numeric value for Mary
     David: Over limit: Fine $10
 
