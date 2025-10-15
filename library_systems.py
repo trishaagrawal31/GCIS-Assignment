@@ -84,7 +84,7 @@ def calculate_average_books(filename):
     Average number of books borrowed: 4.67
      
     """
-    with open(file_path, "r") as f:  
+    with open(filename, "r") as f:  
         csv_reader = csv.reader(f)    
         next(csv_reader)              # Skips the header row
 
@@ -128,7 +128,7 @@ def count_over_limit(filename):
     limit = 3                           # Sets the borrowing limit to 3 books
     over_limit_count = 0                # Counter for students who exceed the limit
 
-    with open(file_path, "r") as f:     
+    with open(filename, "r") as f:     
         csv_reader = csv.reader(f)       
         next(csv_reader)                   # Skips the header row
 
