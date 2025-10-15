@@ -22,8 +22,6 @@ def check_limit(borrowed):
     Parameters:
         borrowed (int): Number of borrowed books
 
-    Enter the number of borrowed books:3
-
     """
     if borrowed <=3:  #books are 3 or less
         return "Within limit"
@@ -46,7 +44,6 @@ def process_borrowers(filename):
     Parameters:
         filename (str) : Filename
 
-    Enter the number of borrowed books:3
     Ali: Within limit
     Sara: Over limit: Fine $5
     John: Within limit
@@ -60,7 +57,7 @@ def process_borrowers(filename):
             next(reader) # omits the header for processing
             for i in reader: # iterating over lines in the file
                 try:
-                    n=int(i[1]) # checkes for potential ValueError and the parameter for check_limit function
+                    n=int(i[1]) # checkes for potential ValueError and acts as the parameter for check_limit function
                     status=check_limit(n)
                     print(f"{i[0]}: {status}") #displays the status
                 except ValueError:
@@ -151,10 +148,10 @@ def count_over_limit(filename):
 #Task 5
 def main():
     """
-    Checks if the file name is valid and calls the all the functions of the book borrowing system
+    Checks if the file name is valid and calls all the functions of the book borrowing system
     >>>main()
 
-    Enter the number of borrowed books:3
+
     Enter the filename: new.csv
     File not found. Please try again.
     Enter the filename: borrowers.csv
