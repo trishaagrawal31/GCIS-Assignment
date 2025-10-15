@@ -108,8 +108,8 @@ def calculate_average_books(filename):
               continue
             
         if valid_entries > 0:                       # Checks if there were any valid entries
-            average = total_books / valid_entries   # Calculates the average number of books
-            print(f"Average number of books borrowed: {average:.2f}") 
+            average = round(total_books / valid_entries, 2)   # Calculates the average number of books
+            print(f"Average number of books borrowed: {average}") 
         else:
             print("No valid entries found.")         # Prints a message if no valid data exists
 
