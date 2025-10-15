@@ -48,24 +48,23 @@ def process_borrowers(filename):
     David: Over limit: Fine $10
 
     """
-    try:
-        with open(filename,"r") as f:
-            reader=csv.reader(f) 
-            next(reader) # omits the header for processing
-            for i in reader: # iterating over lines in the file
-                try:
-                    n=int(i[1]) # checkes for potential ValueError and acts as the parameter for check_limit function
-                    if n < 0:
-                        print(f"Error: Invalid number of books for {i[0]}")
-                        continue
-                    else:
-                        status=check_limit(n)
-                        print(f"{i[0]}: {status}") #displays the status
-                except ValueError:
-                    print(f"Error: Non-numeric value for {i[0]}") # specifies the non-numeric value which caused the error
+    
+    with open(filename,"r") as f:
+        reader=csv.reader(f) 
+        next(reader) # omits the header for processing
+        for i in reader: # iterating over lines in the file
+            try:
+                n=int(i[1]) # checkes for potential ValueError and acts as the parameter for check_limit function
+                if n < 0:
+                    print(f"Error: Invalid number of books for {i[0]}")
+                    continue
+                else:
+                    status=check_limit(n)
+                    print(f"{i[0]}: {status}") #displays the status
+            except ValueError:
+                print(f"Error: Non-numeric value for {i[0]}") # specifies the non-numeric value which caused the error
 
-    except FileNotFoundError:
-        print("File not found")
+    
 
 
 
