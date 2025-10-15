@@ -74,30 +74,16 @@ def process_borrowers(filename):
 
 
 # Task 3 
-"""
-Function name: calculate_average_books
-    This function calculates and displays the average number of books borrowed by students.
-    What does the code do: Reads a CSV file and calculates the average number of books borrowed by students.
-
-    Input: file_path, the path to a CSV file containing student names and the number of books borrowed.
-
-    Output: Prints the average number of books borrowed or a message if no valid entries are found.
-    
-    Parameters:
-        file_path: The path to the CSV file containing student names and number of borrowed books.
-    
-    Example CSV content:
-        Name,Books
-        Ali,3
-        Sara,5
-        John,2
-        Mary,abc
-        David,6
-    
-    Example Output:
-        Average number of books borrowed: 4.00
+def calculate_average_books(filename): 
     """
-def calculate_average_books(file_path): 
+    This function calculates and displays the average number of books borrowed by students.
+    >>> calculate_average_books(filename)
+    Parameters:
+        filename (str): The path to the CSV file containing student names and number of borrowed books
+
+    Average number of books borrowed: 4.67
+     
+    """
     with open(file_path, "r") as f:  
         csv_reader = csv.reader(f)    
         next(csv_reader)              # Skips the header row
@@ -129,18 +115,16 @@ def calculate_average_books(file_path):
 
 
 # Task 4 
-"""
- what does the code do : Counts and prints how many students borrowed more than the allowed limit of books.
 
-    The function reads a CSV file specified by 'file_path'. It skips the header row
-    and checks each students number of borrowed books against a fixed limit (3 books).
-    Only valid entries are counted.
-    Output:
-        Prints the number of students who borrowed more than the allowed limit.
-        for example:
-            Number of students over the limit: 4
-"""
-def count_over_limit(file_path):
+def count_over_limit(filename):
+    """
+    Counts and prints how many students borrowed more than the allowed limit of books.
+    >>> count_over_limit(filename)
+    Parameters:
+        filename (str): The path to the CSV file containing student names and number of borrowed books
+      
+    Number of students over the limit: 2
+    """
     limit = 3                           # Sets the borrowing limit to 3 books
     over_limit_count = 0                # Counter for students who exceed the limit
 
